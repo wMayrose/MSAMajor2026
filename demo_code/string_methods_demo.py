@@ -74,4 +74,34 @@ def main():
         # do this until we don't find any more dogs (-1 is returned to the console)
     print(f"There are {number_of_dogs} {search_word}(s) in the sentence.")
 
+
+    # using the split method
+    print("\nUsing the Split() method\n---------------")
+    # Format: make, model, year, price, engine size
+    car_info = ["Ferrari","F-50","2025","500000","4.8"]
+    car_data = car_info.split(",")
+    print(f"Car data: {car_data}")
+
+    # get the individual items from the list
+    make = car_data[0]
+    model = car_data[1]
+    year = int(car_data[2])
+    price = float(car_data[3])
+    engine_size = float(car_data[4])
+
+print(f"{year} {make} {model}")
+print(f"Price: ${price:,.2f} - Engine Size: {engine_size}")
+
+print(f"Substring method\n-----------")
+
+#find the first comma
+index_of_comma = car_info.find(",")
+
+#read all characters up to first comma
+make_substring = car_info[start_index: index_of_comma]
+print(f"Make: {make}")
+
+
+
+
 main()
