@@ -5,38 +5,53 @@
 # y is +, -, *, or /
 # z is an integer
 
-# Prompt the user to enter a math expression in the format X y Z where y is a math operator (+, _, *, /)
+# Prompt the user to enter a math expression in the format X y Z where y is a math operator (+, -, *, /)
 # "Expression: "
 def main():
-    def expression():
-        while True:
-            try:
-                expression_value = input("Expression: ")
-                # check if X and Z are floats and prompt user to change them
-                x, y, z = expression_value.split(" ")
-                number1 = int(x)
-                number2 = int(z)
-                # set up math equations
-                
-                if expression_value[1] == float or expression_value[3] == float:
-                    print("ERROR. Please enter an integer for X and Z. \n")
-                    continue
-                # check if Y is valid arithmetic method
-                elif expression_value[2] != "+" or expression_value[2] != "-" or expression_value[2] != "*" or expression_value[2] != "/":
-                    print("ERROR. Please enter a valid arithmetic method (+, -, *, /).")
-                    continue
-            except ValueError:
-                print("ERROR. Incorrect expression format.\n")
-                if y == '+':
-                        result = number1 + number2
-                elif y == '-':
-                        result = number1 - number2
-                elif y == '*':
-                        result = number1 * number2
-                elif y == '/':
-                        result = number1 / number2
-            return expression_value
-    expression_value = expression()
+
+    while True:
+        try:
+            expression_value = input("Expression: ")
+            # check if X and Z are floats and prompt user to change them
+            x, y, z = expression_value.split(" ")
+            number1 = int(x)
+            math_sign1 = (y)
+            number2 = int(z)
+
+
+            # set up math equations
+            if y == '+':
+                    result = number1 + number2
+            elif y == '-':
+                    result = number1 - number2
+            elif y == '*':
+                    result = number1 * number2
+            elif y == '/':
+                    if number2 == 0:
+                        print("ERROR. Cannot divide by 0.")
+                        continue
+                    result = number1 / number2
+            else:
+                print("ERROR. Please enter a valid arithmetic method (+, -, *, /).")
+        except ValueError:
+            print("ERROR. Incorrect expression format. The correct format is: integer method integer\n")
+            
+        
+        #print(f"Answer: {result:.1f}")
+
+        try:
+            print(f"Answer: {result:.1f}")
+
+        except Exception as e:
+            print(f"ERROR: {e}")
+
+        opinion = input("Do you want to evaluate another expression? (Y or N): ").strip()
+        if opinion == "Y":
+            continue
+        elif opinion == "N":
+            break
+        else:
+            print("ERROR. Please enter Y (yes) or N (no).")
 main()
 
 
