@@ -1,0 +1,25 @@
+#funtion to add 3 numbers
+#input: number1, number2, number3 (all integers)
+#output: total (integer)
+
+def add_numbers(number_1:int, number_2:int, number_3:int) -> int:
+    total = number_1 + number_2 + number_3
+    c = 18
+    return total
+
+
+
+def main():
+    a = 5
+    b = 4
+    c = 3
+
+    #call the add_numbers function to assign the returned value to answer
+    answer = add_numbers(a, b, c)
+    print(f"{a} + {b} + {c} = {answer}")
+    print(f"{a} + {b} + {c} = {add_numbers(a, b, c)}")
+    print(f"c = {c}")
+
+
+
+main()
