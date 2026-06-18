@@ -25,36 +25,25 @@
     #fucntion to get the number of questions#
 
 
-
-#write random generator function
 import random
-def random_generator_1():
-    #create a random number generator
-    random_generate = random.Random()
-    random_number = random_generator_1.randint(0, 100)
-    print(f"Random value: {random_number}")
-
-    #generate 20 random numbers
-    for _ in range(1):
-        print(random_generator_1.randint(0, 10))
-
 
 
 #write difficulty level function
 def difficulty():
     while True:
         try:
-            difficulty_level = int(input("Difficulty Level (1, 2, 3): "))
+            difficulty_level = int(input("\nDifficulty Level (1, 2, 3): "))
+            if difficulty_level == 1 or difficulty_level == 2 or difficulty_level == 3:
+                break
+            else:
+                print("ERROR. Invalid input")
+                continue
         except ValueError:
         # print error message and continue
             print("ERROR. Invalid input.")
             continue
 
-        if difficulty_level == 1 or difficulty_level == 2 or difficulty_level == 3:
-            break
-        else:
-            print("ERROR. Invalid input")
-            continue
+        
     return difficulty_level
 
 
@@ -63,45 +52,66 @@ def number_questions():
     while True:
         try:
             number_of_questions = int(input("Number of Questions (3-10): "))
+            if 3 <= number_of_questions <= 10:
+                break
+            else:
+                print("ERROR. Invalid input.")
+            continue
         except ValueError:
         # print error message and continue
-            print("ERROR. Invalid input.")
-            continue
-
-        if 3 <= number_of_questions <= 10:
-            break
-        else:
             print("ERROR. Invalid input.")
             continue
     return number_of_questions
 
 
-# math equation function
-def math_problem():
-    random_generate = random_generator_1()
-    while True:
-        try:
-            math = input("{x} + {y} = ")
-            
-        except ValueError:
-            print("ERROR. Incorrect expression format. The correct format is: integer method integer\n")
-        if math == {x} + {y}:
-            print("CORRECT!!")
-        elif math != {x} +{y}:
-            print("WRONG!!")
-            continue
 
 #main function
 def main():
-    #get difficulty level
+    #call functions
     difficulty_level = difficulty()
-    #print(difficulty_level)
     number_of_questions = number_questions()
-    #print(number_of_questions)
-    #get number of questions
+    questions_correct = 0
 
-        #write if statement for difficulty level to result in correct numbers used in math problems
-    
+    for _ in range(number_of_questions):
+        if difficulty_level == 1:
+            x = (random.randint(1, 9))
+            y = (random.randint(1, 9))
+        elif difficulty_level == 2:
+            x = (random.randint(10, 99))
+            y = (random.randint(10, 99))
+        elif difficulty_level == 3:
+            x = (random.randint(100, 999))
+            y = (random.randint(100, 999))
+
+
+
+        # write math equations
+        for math in range(3):
+            try:
+                answer = int(input(f"\n{x} + {y} = "))
+                
+            except ValueError:
+                print("WRONG!!")
+                continue
+
+            if answer == x + y:
+                print("CORRECT!!")
+                questions_correct += 1
+                break
+
+            else:
+                print("WRONG!!")
+                continue
+    percentage = questions_correct / number_of_questions * 100
+    print(f"\n\nYou got {percentage:.1f}% or {questions_correct} out of {number_of_questions} correct.")
+
+    if percentage <= 60.0:
+        print("Better luck next time!\n")
+    elif 60.0 < percentage <= 85.0:
+        print("Good effort!\n")
+    elif percentage > 85.0:
+        print("Great job!\n")
+        
 
 
 main()
