@@ -17,7 +17,7 @@ import datetime
 class Student():
     #define constructor
     #the constructor is a function that is called to create a student profle
-    def __init__(self, first_name:str, last_name:str, major:str, credit_hours:float, GPA:float, ID:str):
+    def __init__(self, first_name:str, last_name:str, major:str, credit_hours:int, GPA:float, ID:str):
         #define class properties witht the parameter values
         self.__first_name = first_name
         self.__last_name = last_name
@@ -41,12 +41,12 @@ class Student():
         return self.__credit_hours
     
 
-    def set_credit_hours(self, new_hours:float):
+    def set_credit_hours(self, new_hours:int):
         self.__credit_hours = new_hours
         return
 
 
-    def update_credit_hours(self, additional_hours:float):
+    def update_credit_hours(self, additional_hours:int):
         self.__credit_hours += additional_hours
         return
     
@@ -55,7 +55,7 @@ class Student():
         return self.__GPA
     
 
-    def set_GPA(self, new_GPA:str):
+    def set_GPA(self, new_GPA:float):
         self.__GPA = new_GPA
         return
     
