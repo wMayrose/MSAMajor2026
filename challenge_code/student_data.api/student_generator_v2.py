@@ -1,31 +1,38 @@
 from Student import Student
 
-def main():
+"""
+Function to return a list of student objects
+Input: none
+Output: list of student objects
+"""
+
+
+
+
+def load_students() -> list[Student]:
 
     #open students.csv: create a file handler to open file in read mode
     data_file = open("students.csv", "r")
-    print(data_file)
+
 
     #create an empty list
     student_info = []
 
         #use loop to read contents of file line by line
     for line_of_data in data_file:
+        
+        #split the line at the comma
+        all_student_data = line_of_data.split(",")
 
         try:
             #handle errors in data format. line_of_data should have 6 items
             #if error in format than write to a log file
-            if len(line_of_data) != 6:
+            if len(all_student_data) != 6:
                 raise Exception(f"ERROR in the file. Data has {len(line_of_data)} items but should have six.")
         except Exception as error:
             continue
 
         try:
-
-            #split the line at the comma
-            all_student_data = line_of_data.split(",")
-            print(all_student_data)
-
             #get the pieces of data from the list
             first_name = all_student_data[0]
             last_name = all_student_data[1]
@@ -44,14 +51,52 @@ def main():
     #close the file
     data_file.close()
 
-    #print all items from the list
-    for student in student_info:
-        student.print_student_data()
-    
-        #print(f"{first_name} {last_name}")
-        #print(f"Class level: {self.get_class_level()}, Major: {major}")
-        #print(f"GPA: {GPA}, ID: {ID}\n")
+    return student_info
+
+"""
+Function to convert student objects into dictionaries
+Input: list of student objects
+Output: list of student dictionaries
+"""
+def student_to_dictionary(list_of_students: list[Student]) -> list[dict]:
+    #create an empty list to store the dictionaries
+    student_dictionary_list = []
+
+    #loop through the list and write each students' data to a dictionary
+    for student in list_of_students:
+
+        #create an empty dictionary
+        student_dictionary = {}
+
+        #make entries into the dictionary using the student properties
+        #firstname, lastname, major, gpa, class, id
+        student_dictionary['first_name'] = student.get_first_name()
+        student_dictionary['last_name'] = student.get_last_name()
+        student_dictionary['major'] = student.get_major()
+        student_dictionary['GPA'] = student.get_GPA()
+        student_dictionary['ID'] = student.get_ID()
+
+        #append the dictionary to the list of dictionaries
+        student_dictionary_list.append(student_dictionary)
+
+    #return list of dictionaries
+    return student_dictionary_list
 
 
 
-main()
+"""
+Functions to get student dictionaries
+Input: none
+Output: a list of student dictionaries
+"""
+
+def get_student_dictionaries():
+    #get a list of students
+    student_list = load_students()
+
+    #get a list of student dictionaries
+    student_dictionaries = student_to_dictionary(student_list)
+
+    return student_dictionaries
+
+get_student_dictionaries()
