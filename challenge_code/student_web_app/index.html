@@ -5,6 +5,19 @@
     {% for student in student_data %}
         <div class="post">
             <h2>{{ student['first_name'] }} {{student['last_name']}}</h2>
+            <dl class="student-details">
+                <dt>Major</dt>
+                <dd>{{ student['major']}}</dd>
+                <dt>Class</dt>
+                <dd>{{ student['class'] }}</dd>
+                <dt>GPA</dt>
+                <dd>{{ student['GPA'] }}</dd>
+                <dt>ID</dt>
+                <dd>{{ student['ID'] }}</dd>
+
+
+            </dl>
+
         </div>
     {% endfor %}
 {% endblock %}
