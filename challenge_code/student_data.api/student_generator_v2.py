@@ -73,6 +73,7 @@ def student_to_dictionary(list_of_students: list[Student]) -> list[dict]:
         student_dictionary['first_name'] = student.get_first_name()
         student_dictionary['last_name'] = student.get_last_name()
         student_dictionary['major'] = student.get_major()
+        student_dictionary['class'] = student.get_class_level()
         student_dictionary['GPA'] = student.get_GPA()
         student_dictionary['ID'] = student.get_ID()
 
