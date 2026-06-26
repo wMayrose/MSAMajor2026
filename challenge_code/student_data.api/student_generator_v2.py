@@ -1,4 +1,19 @@
 from Student import Student
+from datetime import datetime
+
+"""
+Function to write an error message to a log file
+Input: the error message (string)
+Output: none
+"""
+def write_to_error_log(message:str) -> None:
+    the_date = datetime.now()
+
+    #open the log file in append mode: error_log.txt
+    with open("error_log.txt", "a") as log_file:
+        log_file.write(f"{the_date}: {message}\n")
+        #write an error message to the file in the format 6/26/2026: Error in data file on line 5.
+    return
 
 """
 Function to return a list of student objects
@@ -28,7 +43,8 @@ def load_students() -> list[Student]:
             #handle errors in data format. line_of_data should have 6 items
             #if error in format than write to a log file
             if len(all_student_data) != 6:
-                raise Exception(f"ERROR in the file. Data has {len(line_of_data)} items but should have six.")
+                write_to_error_log(f"ERROR in the file. Data has {len(line_of_data)} items but should have six.")
+                raise Exception(f"ERROR in the file. Data has {len(line_of_data)} items but should have six.\n")
         except Exception as error:
             continue
 
